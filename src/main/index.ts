@@ -13,7 +13,8 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: true, //isko mene true liya hai default false tha , it makes environment more secure
+      contextIsolation:true //will make js seperate of main from renderer
     }
   })
 
