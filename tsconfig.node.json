@@ -1,8 +1,24 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
-  "include": ["electron.vite.config.*", "src/main/**/*", "src/preload/**/*"],
+  "include": [
+    "electron.vite.config.*",
+    "src/main/**/*",
+    "src/preload/**/*",
+    "src/shared/**/*", // we added this 
+  ],
   "compilerOptions": {
     "composite": true,
-    "types": ["electron-vite/node"]
+    "types": [
+      "electron-vite/node"
+    ],
+    "baseUrl": ".", //base url set to root of this project
+    "paths":{ 
+      "@/*": [ // we added this , means every time we import from /* , we are actually importing from src/main/*
+      "src/main/*"
+    ],
+    "@shared/*": [ // we added this , same reason as above
+      "src/shared/*"
+    ],
+    }
   }
 }
